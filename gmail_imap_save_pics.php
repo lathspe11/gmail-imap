@@ -1,7 +1,9 @@
 #!/usr/bin/php5
 <?php
+//This include holds the security ifo for the account 
 include 'include_mail.php';
 
+//Get the extention of the file if it exists .txt, .jpg, etc
 function getFileExtension($fileName){
    $parts=explode(".",$fileName);
    return $parts[count($parts)-1];
@@ -9,11 +11,7 @@ function getFileExtension($fileName){
 
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING)); 
 
-//echo "parsing ini file...\n"; 
-//$ini = parse_ini_file('g.ini'); 
-//$user = $ini['user']; 
-//$pass = $ini['pass']; 
-$year = '2000'; 
+$year = '2000'; //Pick termination date
 echo "account {$ugmail} - killing msgs from before {$year}\n\n"; 
 
 $imap = imap_open($servGmail, $ugmail, $pwgmail) 
@@ -111,7 +109,7 @@ for ($m = $mbox->Nmsgs,$k = 0; $k < $message_count; ++$k, --$m){
 				case '.png':
 				case '.gif':
 					print "is an image \n";
-					if (file_put_contents($destPhotos.$name., $contents) == false) {
+					if (file_put_contents($destPhotos.$name, $contents) == false) {
 						die("File_put_contents error");
 					}
 				  break;

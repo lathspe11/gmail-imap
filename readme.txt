@@ -1,0 +1,1 @@
+these files are used to manage a gmail account. You can set up the gmail_imap.php file to clean any mail from  
